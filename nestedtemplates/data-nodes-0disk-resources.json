@@ -82,6 +82,30 @@
         "platformFaultDomainCount": 3
       }
     },
+	{
+      "apiVersion": "2016-03-30",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[concat(parameters('namespace'), '-nic', copyindex())]",
+      "location": "[resourceGroup().location]",
+      "copy": {
+        "name": "[concat(parameters('namespace'), 'nicLoop')]",
+        "count": "[parameters('vmCount')]"
+      },
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              },
+              "loadBalancerBackendAddressPools": "[parameters('lbBackendPools').backendPools]"
+            }
+          }
+        ]
+      }
+    },
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines",
