@@ -4,11 +4,7 @@
   "parameters": {
     "adminUsername": {
       "type": "string",
-<<<<<<< HEAD
-	  "defaultValue":"admin",
-=======
       "defaultValue":"admin",
->>>>>>> 61943688f0ff2e1b9f31d6e490b6bb91a8f325b4
       "metadata": {
         "description": "Admin username used when provisioning virtual machines"
       }
