@@ -66,7 +66,7 @@
     }
   },
   "variables": {
-    "subnetRef": "[concat(resourceId(parameters('vnetId'), '/subnets/', parameters('subnet').name)]",
+    "subnetRef": "[concat(parameters('vnetId'), '/subnets/', parameters('subnet').name)]",
     "storageAccountName": "[parameters('storageSettings').shared]",
     "storageAccountNameAFS": "[parameters('storageSettings').afs]",
     "vmName": "[concat(parameters('namespace'), '-vm')]",

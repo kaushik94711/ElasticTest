@@ -59,7 +59,7 @@
     }
   },
   "variables": {
-    "subnetRef": "[concat(resourceId(parameters('vnetId'), '/subnets/', parameters('subnet').name)]",
+    "subnetRef": "[concat(parameters('vnetId'), '/subnets/', parameters('subnet').name)]",
     "vmName": "[concat(parameters('namespace'), '-vm')]",
     "nicName": "[concat(parameters('namespace'), '-nic')]"
   },
