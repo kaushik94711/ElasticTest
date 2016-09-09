@@ -1,0 +1,16 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "administrator"
+    },
+    "adminPassword": {
+      "value": "Admin@123"
+    },
+	 "vnetId": {
+      "description": "The Virtual Network that you want your VM to connect to, so that it can access a specific network, such as corp net etc.",
+        "value": "/subscriptions/dbbe9a67-fdcb-4455-b731-a502513ecdf7/resourceGroups/ERNETWORK/providers/Microsoft.Network/virtualNetworks/MSITCOMTOOLS-CORP-WUS-1"
+    }
+  }
+}
