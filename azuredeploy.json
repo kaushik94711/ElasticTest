@@ -25,6 +25,7 @@
     },
 	"vnetId": {
       "type": "string",
+      "defaultValue":"/subscriptions/dbbe9a67-fdcb-4455-b731-a502513ecdf7/resourceGroups/ERNETWORK/providers/Microsoft.Network/virtualNetworks/MSITCOMTOOLS-CORP-WUS-1",
       "metadata": {
         "description": "The Virtual Network that you want your VM to connect to, so that it can access a specific network, such as corp net etc."
       }
