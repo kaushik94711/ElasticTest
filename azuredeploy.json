@@ -770,7 +770,7 @@
             "value": "[concat(parameters('esClusterName'), '-master')]"
           },
 		  "vnetId":{
-			"value": "parameters('vnetId')"
+			"value": "[parameters('vnetId')]"
 		  }
         }
       }
@@ -814,7 +814,7 @@
             "value": "[concat(parameters('esClusterName'), '-marvel')]"
           },
 		  "vnetId":{
-			"value": "parameters('vnetId')"
+			"value": "[parameters('vnetId')]"
 		  }
         }
       }
@@ -887,7 +887,7 @@
             "value": "[concat(parameters('esClusterName'), '-client')]"
           },
 		  "vnetId":{
-			"value": "parameters('vnetId')"
+			"value": "[parameters('vnetId')]"
 		  }
         }
       }
@@ -934,7 +934,7 @@
             "value": "[variables('dataLBSettings')]"
           },
 		  "vnetId":{
-			"value": "parameters('vnetId')"
+			"value": "[parameters('vnetId')]"
 		  }
         }
       }
@@ -972,7 +972,7 @@
             "value": "[concat(parameters('esClusterName'), '-jumpbox')]"
           },
 		  "vnetId":{
-			"value": "parameters('vnetId')"
+			"value": "[parameters('vnetId')]"
 		  }
         }
       }
@@ -1010,7 +1010,7 @@
             "value": "[concat(parameters('esClusterName'), '-kibana')]"
           },
 		  "vnetId":{
-			"value": "parameters('vnetId')"
+			"value": "[parameters('vnetId')]"
 		  }
         }
       }
