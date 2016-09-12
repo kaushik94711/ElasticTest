@@ -21,6 +21,12 @@
         "description": "Subnet object for provisioning resources in (expects properties name as the subnet name, and vnet as the virtual network name on the object)"
       }
     },
+    "jumpBoxIpPrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "IP Prefix used to append index for static addresses"
+      }
+    },
     "storageAccountName": {
       "type": "string",
       "metadata": {
@@ -102,7 +108,8 @@
           {
             "name": "ipconfig1",
             "properties": {
-              "privateIPAllocationMethod": "Dynamic",
+             "privateIPAllocationMethod": "Static",
+              "privateIPAddress": "[concat(parameters('jumpBoxIpPrefix'), copyindex())]",
               "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpName'))]"
               },
