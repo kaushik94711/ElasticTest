@@ -9,7 +9,7 @@
         "description": "The namespace prefix for resources created by this template"
       }
     },
-	"vnetId": {
+    "vnetId": {
       "type": "string",
       "metadata": {
         "description": "The Virtual Network that you want your VM to connect to, so that it can access a specific network, such as corp net etc."
@@ -94,7 +94,7 @@
         "publicIPAllocationMethod": "Static"
       }
     },
-	  {
+    {
       "apiVersion": "2016-03-30",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[variables('nicName')]",
@@ -108,7 +108,7 @@
           {
             "name": "ipconfig1",
             "properties": {
-             "privateIPAllocationMethod": "Static",
+              "privateIPAllocationMethod": "Static",
               "privateIPAddress": "[concat(parameters('jumpBoxIpPrefix'), '']",
               "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpName'))]"
@@ -124,44 +124,44 @@
         ]
       }
     },
-    {
-      "apiVersion": "2015-06-15",
-      "type": "Microsoft.Compute/virtualMachines",
-      "name": "[variables('vmName')]",
-      "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
-      ],
-      "properties": {
-        "hardwareProfile": {
-          "vmSize": "[variables('vmSize')]"
-        },
-        "osProfile": {
-          "computerName": "jumpbox",
-          "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('authSet').password]",
-          "linuxConfiguration": "[parameters('osSettings').linuxConfiguration]"
-        },
-        "storageProfile": {
-          "imageReference": "[parameters('osSettings').imageReference]",
-          "osDisk": {
-            "name": "osdisk",
-            "vhd": {
-              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2016-01-01').primaryEndpoints.blob, 'vhds/', variables('vmName'), '-osdisk.vhd')]"
-            },
-            "caching": "ReadWrite",
-            "createOption": "FromImage"
-          }
-        },
-        "networkProfile": {
-          "networkInterfaces": [
-            {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
-            }
-          ]
-        }
-      }
-    }
+    //{
+    //  "apiVersion": "2015-06-15",
+    //  "type": "Microsoft.Compute/virtualMachines",
+    //  "name": "[variables('vmName')]",
+    //  "location": "[resourceGroup().location]",
+    //  "dependsOn": [
+    //    "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+    //  ],
+    //  "properties": {
+    //    "hardwareProfile": {
+    //      "vmSize": "[variables('vmSize')]"
+    //    },
+    //    "osProfile": {
+    //      "computerName": "jumpbox",
+    //      "adminUsername": "[parameters('adminUsername')]",
+    //      "adminPassword": "[parameters('authSet').password]",
+    //      "linuxConfiguration": "[parameters('osSettings').linuxConfiguration]"
+    //    },
+    //    "storageProfile": {
+    //      "imageReference": "[parameters('osSettings').imageReference]",
+    //      "osDisk": {
+    //        "name": "osdisk",
+    //        "vhd": {
+    //          "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2016-01-01').primaryEndpoints.blob, 'vhds/', variables('vmName'), '-osdisk.vhd')]"
+    //        },
+    //        "caching": "ReadWrite",
+    //        "createOption": "FromImage"
+    //      }
+    //    },
+    //    "networkProfile": {
+    //      "networkInterfaces": [
+    //        {
+    //          "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+    //        }
+    //      ]
+    //    }
+    //  }
+    //}
   ],
   "outputs": {
     "jumpbox-pip": {
