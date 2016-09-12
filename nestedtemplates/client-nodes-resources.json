@@ -32,6 +32,12 @@
         "description": "Reference to the VNET Subnet to deploy the nodes in to"
       }
     },
+    "clientNodesIpPrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "IP Prefix used to append index for static addresses"
+      }
+    },
     "vmSize": {
       "type": "string",
       "defaultValue": "Standard_A0",
@@ -93,7 +99,8 @@
           {
             "name": "ipconfig1",
             "properties": {
-             "privateIPAllocationMethod": "Dynamic",
+            "privateIPAllocationMethod": "Static",
+              "privateIPAddress": "[concat(parameters('clientNodesIpPrefix'), copyindex())]",
               "subnet": {
                 "id": "[variables('subnetRef')]"
               },
