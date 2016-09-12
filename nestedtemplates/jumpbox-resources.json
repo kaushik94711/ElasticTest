@@ -109,7 +109,7 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[concat(parameters('jumpBoxIpPrefix'), '']",
+              "privateIPAddress": "[concat(parameters('jumpBoxIpPrefix'), '')]",
               "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIpName'))]"
               },
