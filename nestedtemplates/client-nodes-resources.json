@@ -103,7 +103,7 @@
               "privateIPAddress": "[concat(parameters('clientNodesIpPrefix'), copyindex())]",
               "subnet": {
                 "id": "[variables('subnetRef')]"
-              },
+              }
             }
           }
         ]
