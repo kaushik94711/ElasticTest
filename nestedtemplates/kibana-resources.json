@@ -52,7 +52,10 @@
     "vmName": "[concat(parameters('namespace'), '-vm')]",
     "publicIpName": "[concat(parameters('namespace'), '-pip')]",
     "securityGroupName": "[concat(parameters('namespace'), '-nsg')]",
-    "nicName": "[concat(parameters('namespace'), '-nic')]"
+    "nicName": "[concat(parameters('namespace'), '-nic')]",
+     "autologonContent": "[concat('<AutoLogon><Password><Value>',parameters('authSet').password,'</Value></Password><Domain>.</Domain><Enabled>true</Enabled><LogonCount>1</LogonCount><Username>',parameters('adminUsername'),'</Username></AutoLogon>')]",
+    "firstLogonCommands": "<FirstLogonCommands><SynchronousCommand><CommandLine>netsh advfirewall firewall set rule group=&quot;Windows Management Instrumentation (WMI)&quot; new enable=Yes</CommandLine><Description>Update Firewall Settings</Description><Order>1</Order></SynchronousCommand><SynchronousCommand><CommandLine>logoff.exe</CommandLine><Description>Logoff</Description><Order>2</Order></SynchronousCommand></FirstLogonCommands>"
+
   },
   "resources": [
     {
@@ -147,7 +150,28 @@
           "computerName": "kibana",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('authSet').password]",
-          "linuxConfiguration": "[parameters('osSettings').linuxConfiguration]"
+          "windowsConfiguration": {
+            "additionalUnattendContent": [
+              {
+                "passName": "oobesystem",
+                "componentName": "Microsoft-Windows-Shell-Setup",
+                "settingName": "Autologon",
+                "content": "[variables('autologonContent')]"
+              },
+              {
+                "passName": "oobesystem",
+                "componentName": "Microsoft-Windows-Shell-Setup",
+                "settingName": "FirstLogonCommands",
+                "content": "[variables('firstLogonCommands')]"
+              }
+            ],
+            "winRM": {
+              "listeners": [
+                {
+                  "protocol": "Http"
+                }
+              ]
+            }
         },
         "storageProfile": {
           "imageReference": "[parameters('osSettings').imageReference]",
