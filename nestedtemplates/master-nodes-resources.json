@@ -156,7 +156,7 @@
                 }
               ]
             }
-
+          }
           },
           "storageProfile": {
             "imageReference": "[parameters('osSettings').imageReference]",
@@ -198,6 +198,6 @@
           }
         ]
       }
-    }
+    
       ]
     }
