@@ -57,25 +57,25 @@
     "firstLogonCommands": "<FirstLogonCommands><SynchronousCommand><CommandLine>netsh advfirewall firewall set rule group=&quot;Windows Management Instrumentation (WMI)&quot; new enable=Yes</CommandLine><Description>Update Firewall Settings</Description><Order>1</Order></SynchronousCommand><SynchronousCommand><CommandLine>logoff.exe</CommandLine><Description>Logoff</Description><Order>2</Order></SynchronousCommand></FirstLogonCommands>"
   },
   "resources": [
-    //{
-    //  "apiVersion": "2016-03-30",
-    //  "type": "Microsoft.Network/networkInterfaces",
-    //  "name": "[variables('nicName')]",
-    //  "location": "[resourceGroup().location]",
-    //  "properties": {
-    //    "ipConfigurations": [
-    //      {
-    //        "name": "ipconfig1",
-    //        "properties": {
-    //          "privateIPAllocationMethod": "Dynamic",
-    //          "subnet": {
-    //            "id": "[variables('subnetRef')]"
-    //          }
-    //        }
-    //      }
-    //    ]
-    //  }
-    //},
+    {
+      "apiVersion": "2016-03-30",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[variables('nicName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              }
+            }
+          }
+        ]
+      }
+    },
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines",
