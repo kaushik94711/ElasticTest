@@ -103,7 +103,7 @@
             "name": "ipconfig1",
             "properties": {
             "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[concat(parameters('logstashNodesIpPrefix'), (copyindex()+3))]",
+              "privateIPAddress": "[concat(parameters('logstashNodesIpPrefix'), (copyindex()+2))]",
               "subnet": {
                 "id": "[variables('subnetRef')]"
               }
