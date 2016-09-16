@@ -32,7 +32,7 @@
         "description": "Reference to the VNET Subnet to deploy the nodes in to"
       }
     },
-    "clientNodesIpPrefix": {
+    "logstashNodesIpPrefix": {
       "type": "string",
       "metadata": {
         "description": "IP Prefix used to append index for static addresses"
@@ -57,12 +57,12 @@
         "description": "Number of instances to create"
       }
     },
-    "lbBackendPools": {
-      "type": "object",
-      "metadata": {
-        "description": "loadBalancerBackendAddressPools config object"
-      }
-    },
+    //"lbBackendPools": {
+    //  "type": "object",
+    //  "metadata": {
+    //    "description": "loadBalancerBackendAddressPools config object"
+    //  }
+    //},
     "namespace": {
       "type": "string",
       "metadata": {
@@ -84,7 +84,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/availabilitySets",
-      "name": "es-client-set",
+      "name": "es-logstash-set",
       "location": "[resourceGroup().location]",
       "properties": {}
     },
@@ -94,7 +94,7 @@
       "name": "[concat(variables('nicName'), copyindex())]",
       "location": "[resourceGroup().location]",
       "copy": {
-        "name": "clientNodesNicLoop",
+        "name": "logstashNodesNicLoop",
         "count": "[parameters('vmCount')]"
       },
       "properties": {
@@ -103,7 +103,7 @@
             "name": "ipconfig1",
             "properties": {
             "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[concat(parameters('clientNodesIpPrefix'), copyindex())]",
+              "privateIPAddress": "[concat(parameters('logstashNodesIpPrefix'), copyindex())]",
               "subnet": {
                 "id": "[variables('subnetRef')]"
               }
@@ -118,22 +118,22 @@
       "name": "[concat(variables('vmName'), copyindex())]",
       "location": "[resourceGroup().location]",
       "copy": {
-        "name": "clientVmLoop",
+        "name": "logstashVmLoop",
         "count": "[parameters('vmCount')]"
       },
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicName'), copyindex()))]",
-        "[resourceId('Microsoft.Compute/availabilitySets', 'es-client-set')]"
+        "[resourceId('Microsoft.Compute/availabilitySets', 'es-logstash-set')]"
       ],
       "properties": {
         "availabilitySet": {
-          "id": "[resourceId('Microsoft.Compute/availabilitySets', 'es-client-set')]"
+          "id": "[resourceId('Microsoft.Compute/availabilitySets', 'es-logstash-set')]"
         },
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
         },
         "osProfile": {
-          "computerName": "[concat('client-vm', copyIndex())]",
+          "computerName": "[concat('logstash-vm', copyIndex())]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('authSet').password]",
           "windowsConfiguration": {
@@ -178,27 +178,7 @@
             }
           ]
         }
-      },
-      "resources": [
-        {
-          "type": "extensions",
-          "name": "installelasticsearch",
-          "apiVersion": "2015-06-15",
-          "location": "[resourceGroup().location]",
-          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmName'), copyindex()))]"
-          ],
-          "properties": {
-            "publisher": "[parameters('osSettings').extensionSettings.client.publisher]",
-            "type": "[parameters('osSettings').extensionSettings.client.type]",
-            "typeHandlerVersion": "[parameters('osSettings').extensionSettings.client.typeHandlerVersion]",
-            "settings": {
-              "fileUris": "[parameters('osSettings').extensionSettings.client.settings.fileUris]",
-              "commandToExecute": "[concat(parameters('osSettings').extensionSettings.client.settings.commandToExecute, listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameAFS')), '2016-01-01').keys[0].value)]"
-            }
-          }
-        }
-      ]
+      }
     }
   ]
 }
