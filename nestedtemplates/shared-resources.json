@@ -94,7 +94,7 @@
         "name": "storageLoop",
         "count": "[parameters('storageSettings').count]"
       }
-    },
+    }
     //{
     //  "apiVersion": "2016-03-30",
     //  "type": "Microsoft.Network/publicIPAddresses",
