@@ -47,7 +47,7 @@
     }
   },
   "variables": {
-    "vmSize": "D4_V2 Standard",
+    "vmSize": "Standard_D4_V2",
     "subnetRef": "[concat(parameters('vnetId'), '/subnets/', parameters('subnet').name)]",
     "vmName": "[concat(parameters('namespace'), '-vm')]",
     "publicIpName": "[concat(parameters('namespace'), '-pip')]",
