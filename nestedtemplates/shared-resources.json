@@ -95,14 +95,14 @@
         "count": "[parameters('storageSettings').count]"
       }
     },
-    {
-      "apiVersion": "2016-03-30",
-      "type": "Microsoft.Network/publicIPAddresses",
-      "name": "public-ip",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "publicIPAllocationMethod": "Static"
-      }
-    }
+    //{
+    //  "apiVersion": "2016-03-30",
+    //  "type": "Microsoft.Network/publicIPAddresses",
+    //  "name": "public-ip",
+    //  "location": "[resourceGroup().location]",
+    //  "properties": {
+    //    "publicIPAllocationMethod": "Static"
+    //  }
+    //}
   ]
 }
