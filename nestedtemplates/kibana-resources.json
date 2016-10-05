@@ -135,18 +135,18 @@
           ]
         }
       },
-      "resources": [
-        {
-          "type": "extensions",
-          "name": "installkibana",
-          "apiVersion": "2015-06-15",
-          "location": "[resourceGroup().location]",
-          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
-          ],
-          "properties": "[parameters('osSettings').extensionSettings.kibana]"
-        }
-      ]
+      //"resources": [
+      //  {
+      //    "type": "extensions",
+      //    "name": "installkibana",
+      //    "apiVersion": "2015-06-15",
+      //    "location": "[resourceGroup().location]",
+      //    "dependsOn": [
+      //      "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
+      //    ],
+      //    "properties": "[parameters('osSettings').extensionSettings.kibana]"
+      //  }
+      //]
     }
   ]
 }
