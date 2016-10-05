@@ -81,9 +81,9 @@
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[variables('vmName')]",
       "location": "[resourceGroup().location]",
-      //"dependsOn": [
-      //  "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
-      //],
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+      ],
       "properties": {
         "hardwareProfile": {
           "vmSize": "[variables('vmSize')]"
@@ -134,7 +134,7 @@
             }
           ]
         }
-      },
+      }
       //"resources": [
       //  {
       //    "type": "extensions",
