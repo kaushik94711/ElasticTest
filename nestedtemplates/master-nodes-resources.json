@@ -177,26 +177,26 @@
             ]
           }
         },
-        "resources": [
-          {
-            "type": "extensions",
-            "name": "installelasticsearch",
-            "apiVersion": "2015-06-15",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-              "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmName'), copyindex()))]"
-            ],
-            "properties": {
-              "publisher": "[parameters('osSettings').extensionSettings.master.publisher]",
-              "type": "[parameters('osSettings').extensionSettings.master.type]",
-              "typeHandlerVersion": "[parameters('osSettings').extensionSettings.master.typeHandlerVersion]",
-              "settings": {
-                "fileUris": "[parameters('osSettings').extensionSettings.master.settings.fileUris]",
-                "commandToExecute": "[concat(parameters('osSettings').extensionSettings.master.settings.commandToExecute, listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameAFS')), '2016-01-01').keys[0].value)]"
-              }
-            }
-          }
-        ]
+        //"resources": [
+        //  {
+        //    "type": "extensions",
+        //    "name": "installelasticsearch",
+        //    "apiVersion": "2015-06-15",
+        //    "location": "[resourceGroup().location]",
+        //    "dependsOn": [
+        //      "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmName'), copyindex()))]"
+        //    ],
+        //    "properties": {
+        //      "publisher": "[parameters('osSettings').extensionSettings.master.publisher]",
+        //      "type": "[parameters('osSettings').extensionSettings.master.type]",
+        //      "typeHandlerVersion": "[parameters('osSettings').extensionSettings.master.typeHandlerVersion]",
+        //      "settings": {
+        //        "fileUris": "[parameters('osSettings').extensionSettings.master.settings.fileUris]",
+        //        "commandToExecute": "[concat(parameters('osSettings').extensionSettings.master.settings.commandToExecute, listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountNameAFS')), '2016-01-01').keys[0].value)]"
+        //      }
+        //    }
+        //  }
+        //]
       }
     
       ]
