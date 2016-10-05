@@ -142,27 +142,27 @@
             }
           ]
         }
-      },
-      "resources": [
-        {
-          "type": "extensions",
-          "name": "installelasticsearch",
-          "apiVersion": "2015-06-15",
-          "location": "[resourceGroup().location]",
-          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmName'), copyindex()))]"
-          ],
-          "properties": {
-            "publisher": "[parameters('osSettings').extensionSettings.marvel.publisher]",
-            "type": "[parameters('osSettings').extensionSettings.marvel.type]",
-            "typeHandlerVersion": "[parameters('osSettings').extensionSettings.marvel.typeHandlerVersion]",
-            "settings": {
-              "fileUris": "[parameters('osSettings').extensionSettings.marvel.settings.fileUris]",
-              "commandToExecute": "[concat(parameters('osSettings').extensionSettings.marvel.settings.commandToExecute, listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2016-01-01').keys[0].value)]"
-            }
-          }
-        }
-      ]
+      }
+      //"resources": [
+      //  {
+      //    "type": "extensions",
+      //    "name": "installelasticsearch",
+      //    "apiVersion": "2015-06-15",
+      //    "location": "[resourceGroup().location]",
+      //    "dependsOn": [
+      //      "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vmName'), copyindex()))]"
+      //    ],
+      //    "properties": {
+      //      "publisher": "[parameters('osSettings').extensionSettings.marvel.publisher]",
+      //      "type": "[parameters('osSettings').extensionSettings.marvel.type]",
+      //      "typeHandlerVersion": "[parameters('osSettings').extensionSettings.marvel.typeHandlerVersion]",
+      //      "settings": {
+      //        "fileUris": "[parameters('osSettings').extensionSettings.marvel.settings.fileUris]",
+      //        "commandToExecute": "[concat(parameters('osSettings').extensionSettings.marvel.settings.commandToExecute, listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2016-01-01').keys[0].value)]"
+      //      }
+      //    }
+      //  }
+      //]
     }
   ]
 }
