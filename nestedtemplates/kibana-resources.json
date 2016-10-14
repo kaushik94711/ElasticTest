@@ -79,7 +79,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "TestDomainJoinARM",
+      "name": "KibanaVM",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
@@ -89,7 +89,7 @@
           "vmSize": "[variables('vmSize')]"
         },
         "osProfile": {
-          "computerName": "kibanatest",
+          "computerName": "kibanaVm",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('authSet').password]",
           "windowsConfiguration": {
@@ -134,19 +134,19 @@
             }
           ]
         }
-      }
-      //"resources": [
-      //  {
-      //    "type": "extensions",
-      //    "name": "installkibana",
-      //    "apiVersion": "2015-06-15",
-      //    "location": "[resourceGroup().location]",
-      //    "dependsOn": [
-      //      "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
-      //    ],
-      //    "properties": "[parameters('osSettings').extensionSettings.kibana]"
-      //  }
-      //]
+      },
+      "resources": [
+        {
+          "type": "extensions",
+          "name": "installkibana",
+          "apiVersion": "2015-06-15",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
+          ],
+          "properties": "[parameters('osSettings').extensionSettings.kibana]"
+        }
+      ]
     }
   ]
 }
